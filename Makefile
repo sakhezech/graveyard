@@ -7,16 +7,16 @@ watch:
 check:
 	ruff check .
 	ruff format --check .
-	npx prettier . --check --ignore-path
+	npx prettier --check .
 
 format:
 	ruff check --fix .
 	ruff format .
-	npx prettier . --ignore-path -w
+	npx prettier -w .
 
 write:
 	./write_post
-	npx prettier ./pages/index.html -w
+	npx prettier -w ./pages/index.html
 
 post:
 	git add ./pages/index.html
