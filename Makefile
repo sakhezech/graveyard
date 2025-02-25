@@ -15,7 +15,7 @@ format:
 	npx prettier . --ignore-path -w
 
 write:
-	python write_post.py
+	./write_post
 	npx prettier ./pages/index.html -w
 
 post:
