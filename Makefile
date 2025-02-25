@@ -14,4 +14,13 @@ format:
 	ruff format .
 	npx prettier . --ignore-path -w
 
+write:
+	python write_post.py
+	npx prettier ./pages/index.html -w
+
+post:
+	git add ./pages/index.html
+	git commit
+	git push
+
 .PHONY: *
