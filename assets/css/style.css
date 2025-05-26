@@ -5,8 +5,9 @@
 
 :root {
   --text: hsl(0, 10%, 10%);
+  --border: hsl(0, 10%, 5%);
   --gradient-from: white;
-  --gradient-to: black;
+  --gradient-to: var(--text);
 }
 
 body {
@@ -18,7 +19,9 @@ body {
   font-size: 1.125rem;
   font-family: "Space Grotesk", sans-serif;
 
-  background: linear-gradient(var(--gradient-from), var(--gradient-to)), black;
+  background:
+    linear-gradient(var(--gradient-from), var(--gradient-to)),
+    var(--gradient-to);
   background-repeat: no-repeat;
   background-size: 100% 1000rem;
   background-attachment: scroll;
@@ -29,11 +32,12 @@ a:visited {
 }
 #graveyard > div {
   padding: 1rem;
-  border: 1px solid var(--text);
+  border: 1px solid var(--border);
 }
 .date-display {
   width: fit-content;
   margin-left: auto;
+  color: var(--border);
 }
 .light-up {
   background-color: var(--gradient-from);
