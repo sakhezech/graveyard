@@ -34,6 +34,11 @@ a:visited {
   padding: 1rem;
   border: 1px solid var(--border);
 }
+blockquote > cite {
+  display: block;
+  width: fit-content;
+  margin-inline-start: auto;
+}
 .date-display {
   width: fit-content;
   margin-left: auto;
