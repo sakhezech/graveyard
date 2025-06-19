@@ -1,0 +1,28 @@
+[project]
+name = 'graveyard'
+readme = 'README.md'
+version = 'v0.1.0'
+dependencies = ['combustache', 'watchdog']
+
+[project.optional-dependencies]
+dev = ['ruff', 'faterunner']
+
+[project.urls]
+Homepage = 'https://github.com/sakhezech/graveyard'
+
+[tool.ruff]
+line-length = 79
+[tool.ruff.format]
+quote-style = 'single'
+[tool.ruff.lint]
+extend-select = ['I', 'E501']
+
+[tool.faterunner.targets]
+build = ['python3 graveyard.py']
+watch = ['python3 graveyard.py --watch']
+check = ['ruff check .', 'ruff format --check .']
+format = ['ruff check --fix .', 'ruff format .']
+
+[build-system]
+requires = ['hatchling']
+build-backend = 'hatchling.build'

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Graveyard</title>
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <link rel="icon" href="assets/favicon.png" />
+  </head>
+
+  <body>
+    <h1>Gaveyard</h1>
+    <hr />
+    <div id="graveyard">
+      {{# posts}}
+      <div date="{{date}}">{{{content}}}</div>
+      {{/ posts}}
+    </div>
+    <script>
+      const graveyard = document.getElementById("graveyard");
+      if (graveyard) {
+        let prevDate = Date.now();
+        for (let i = 0; i < graveyard.children.length; i++) {
+          const post = /** @type {HTMLElement} */ (graveyard.children[i]);
+          const dateString = post.getAttribute("date");
+          const currDate = dateString ? Date.parse(dateString) : prevDate;
+          let daysBetween = Math.floor((prevDate - currDate) / 86400000);
+          if (daysBetween < 0) daysBetween = 0;
+
+          post.style.marginTop = daysBetween + 1 + "rem";
+          post.id = `${graveyard.children.length - i}`;
+
+          const dateDisplay = document.createElement("div");
+          dateDisplay.classList.add("date-display");
+          dateDisplay.innerText = dateString ? dateString : "date lost";
+          dateDisplay.addEventListener("click", () => {
+            post.classList.toggle("light-up");
+          });
+
+          post.prepend(dateDisplay);
+          prevDate = currDate;
+        }
+      }
+    </script>
+  </body>
+</html>

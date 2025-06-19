@@ -1,2 +1,0 @@
-pagebuilder @ git+https://github.com/sakhezech/pagebuilder.git@fbdd138b2f33daaf59aeb192c05f06a6d18381a6
-ruff==0.9.6
