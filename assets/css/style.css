@@ -26,6 +26,14 @@ body {
   background-size: 100% 1000rem;
   background-attachment: scroll;
 }
+h1 {
+  margin-bottom: 0px;
+}
+hr {
+  border: none;
+  background-color: var(--text);
+  height: 1px;
+}
 a,
 a:visited {
   color: var(--text);
