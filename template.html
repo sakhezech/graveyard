@@ -13,10 +13,18 @@
     <hr />
     <div id="graveyard">
       {{# posts}}
-      <div date="{{date}}">{{{content}}}</div>
+      <div date="{{date}}">
+        <div onclick="lightUp(this)" class="date-display">{{date}}</div>
+        {{{content}}}
+      </div>
       {{/ posts}}
     </div>
     <script>
+      /** @param {HTMLElement} el */
+      function lightUp(el) {
+        el.classList.toggle("light-up");
+      }
+
       const graveyard = document.getElementById("graveyard");
       if (graveyard) {
         let prevDate = Date.now();
@@ -29,15 +37,6 @@
 
           post.style.marginTop = daysBetween + 1 + "rem";
           post.id = `${graveyard.children.length - i}`;
-
-          const dateDisplay = document.createElement("div");
-          dateDisplay.classList.add("date-display");
-          dateDisplay.innerText = dateString ? dateString : "date lost";
-          dateDisplay.addEventListener("click", () => {
-            post.classList.toggle("light-up");
-          });
-
-          post.prepend(dateDisplay);
           prevDate = currDate;
         }
       }

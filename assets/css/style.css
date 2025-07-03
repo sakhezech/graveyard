@@ -33,6 +33,10 @@ a:visited {
 #graveyard > div {
   padding: 1rem;
   border: 1px solid var(--border);
+
+  &:has(> .light-up) {
+    background-color: var(--gradient-from);
+  }
 }
 blockquote > cite {
   display: block;
@@ -43,7 +47,4 @@ blockquote > cite {
   width: fit-content;
   margin-left: auto;
   color: var(--border);
-}
-.light-up {
-  background-color: var(--gradient-from);
 }
