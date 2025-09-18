@@ -5,6 +5,7 @@ import logging
 import os
 import shutil
 import sys
+from datetime import datetime
 from pathlib import Path
 from typing import Sequence
 
@@ -40,6 +41,16 @@ def render_index() -> str:
         content = post_file.read_text()
         posts.append({'date': date, 'content': content})
     posts.sort(key=lambda x: x['date'], reverse=True)
+
+    prev_post_date = datetime.now()
+    for i, post in enumerate(posts):
+        curr_post_date = datetime.fromisoformat(post['date'])
+
+        post['id'] = len(posts) - i
+        post['days'] = (prev_post_date - curr_post_date).days + 1
+
+        prev_post_date = curr_post_date
+
     data = {'posts': posts}
     render = template.render(data)
     logger.debug('Ended rendering')
