@@ -40,6 +40,8 @@ def render_index() -> str:
         content = post_file.read_text()
         posts.append({'date': date, 'content': content})
     posts.sort(key=lambda x: x['date'], reverse=True)
+    for i, post in enumerate(posts):
+        post['id'] = len(posts) - i
     data = {'posts': posts}
     render = template.render(data)
     logger.debug('Ended rendering')

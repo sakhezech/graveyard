@@ -13,7 +13,7 @@
     <hr />
     <div id="graveyard">
       {{# posts}}
-      <div date="{{date}}">
+      <div date="{{date}}" id="{{id}}">
         <div onclick="lightUp(this)" class="date-display">{{date}}</div>
         {{{content}}}
       </div>
@@ -36,7 +36,6 @@
           if (daysBetween < 0) daysBetween = 0;
 
           post.style.marginTop = daysBetween + 1 + "rem";
-          post.id = `${graveyard.children.length - i}`;
           prevDate = currDate;
         }
       }
