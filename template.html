@@ -13,11 +13,33 @@
     <hr />
     <div id="graveyard">
       {{# posts}}
-      <div id="{{id}}" style="margin-top: {{days}}rem;">
-        <div onclick="this.classList.toggle('light-up')" class="date-display">{{date}}</div>
+      <div date="{{date}}">
+        <div onclick="lightUp(this)" class="date-display">{{date}}</div>
         {{{content}}}
       </div>
       {{/ posts}}
     </div>
+    <script>
+      /** @param {HTMLElement} el */
+      function lightUp(el) {
+        el.classList.toggle("light-up");
+      }
+
+      const graveyard = document.getElementById("graveyard");
+      if (graveyard) {
+        let prevDate = Date.now();
+        for (let i = 0; i < graveyard.children.length; i++) {
+          const post = /** @type {HTMLElement} */ (graveyard.children[i]);
+          const dateString = post.getAttribute("date");
+          const currDate = dateString ? Date.parse(dateString) : prevDate;
+          let daysBetween = Math.floor((prevDate - currDate) / 86400000);
+          if (daysBetween < 0) daysBetween = 0;
+
+          post.style.marginTop = daysBetween + 1 + "rem";
+          post.id = `${graveyard.children.length - i}`;
+          prevDate = currDate;
+        }
+      }
+    </script>
   </body>
 </html>
